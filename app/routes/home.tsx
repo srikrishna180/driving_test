@@ -287,8 +287,8 @@ export default function HomePage() {
 
                             <div className="bg-slate-50 px-4 py-3">
                                 <p className="text-xs font-semibold text-slate-700">
-                                    Watch: Behind the wheel with Drive Academy
-                                </p>
+                                    Watch: Complete Ipswich Test Route Guide – 30min walkthrough with expert tips
+                            </p>
                             </div>
                         </div>
                     </div>
