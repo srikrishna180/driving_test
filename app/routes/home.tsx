@@ -8,28 +8,27 @@ export function meta() {
         {
             name: "description",
             content:
-                "Professional manual & automatic driving lessons in Brisbane, QLD. High pass rates, 20+ years’ experience, test‑day packages and competitive pricing.",
+                "Professional manual & automatic driving lessons in Brisbane, QLD. High pass rates, 20+ years' experience, test‑day packages and competitive pricing.",
         },
     ];
 }
 
 export default function HomePage() {
     const whyRef = useRef<HTMLElement | null>(null);
-    const [carVisible, setCarVisible] = useState(false);
+    const [videoVisible, setVideoVisible] = useState(false);
 
-    // Car slides in when "Why Choose Us" is on screen, slides out when it leaves
+    // Video slides in when "Why Choose Us" is on screen
     useEffect(() => {
         if (!whyRef.current) return;
 
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    // if any part visible, show; if not, hide
-                    setCarVisible(entry.isIntersecting);
+                    setVideoVisible(entry.isIntersecting);
                 });
             },
             {
-                threshold: 0.2, // small part visible is enough
+                threshold: 0.2,
             }
         );
 
@@ -40,7 +39,7 @@ export default function HomePage() {
     return (
         <main className="min-h-screen bg-white text-slate-900">
             {/* HERO WITH VIDEO BACKGROUND */}
-            <section className="relative h-[70vh] min-h-[420px] overflow-hidden">
+            <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
                 <video
                     className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                     autoPlay
@@ -54,32 +53,35 @@ export default function HomePage() {
                     />
                 </video>
 
-                <div className="absolute inset-0 bg-black/45" />
+                {/* Darker overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60" />
 
                 <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center px-4 sm:px-6 lg:px-0">
-                    <div className="max-w-xl space-y-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-200">
+                    <div className="max-w-xl space-y-5">
+                        {/* Bigger and more prominent */}
+                        <p className="text-sm font-bold uppercase tracking-[0.24em] text-white sm:text-base">
                             Accredited Driving Instructors • Brisbane QLD
                         </p>
-                        <h1 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+                        <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl">
                             Learn to drive with the professionals in Brisbane QLD
                         </h1>
-                        <p className="text-sm leading-relaxed text-slate-100 sm:text-[15px]">
+                        <p className="text-base leading-relaxed text-slate-100 sm:text-lg">
                             Get professional manual and automatic driving lessons from
                             accredited instructors in Brisbane, and join hundreds of satisfied
                             customers.
                         </p>
 
-                        <div className="flex flex-wrap items-center gap-3 pt-2">
+                        <div className="flex flex-wrap items-center gap-4 pt-2">
+                            {/* Bigger button */}
                             <a
                                 href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
-                                className="inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-sm hover:bg-[#ff4b26]"
+                                className="inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-8 py-3.5 text-base font-bold uppercase tracking-[0.18em] text-white shadow-xl hover:bg-[#ff4b26] hover:shadow-2xl"
                             >
                                 Book a Lesson
                             </a>
                             <Link
                                 to="/packages"
-                                className="inline-flex items-center justify-center rounded-full border border-white/60 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white hover:border-white"
+                                className="inline-flex items-center justify-center rounded-full border-2 border-white/80 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white hover:border-white hover:bg-white/10"
                             >
                                 View Packages
                             </Link>
@@ -88,106 +90,14 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* OUR SERVICES (SECOND SECTION) */}
+            {/* PACKAGES & PRICING (MOVED TO SECOND POSITION - BRIGHTER) */}
             <section className="bg-white py-14 sm:py-16">
                 <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0">
                     <div className="text-center">
                         <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                            Our Services
-                        </h2>
-                        <p className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                            Everything you need to get your licence
-                        </p>
-                    </div>
-
-                    <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                        <ServiceCard
-                            href="/lessons?tab=lessons"
-                            title="Driving Lessons"
-                            body="Learn from our professional and supportive instructors with tailored manual and automatic lessons."
-                        />
-                        <ServiceCard
-                            href="/lessons?tab=test"
-                            title="Test Day Package"
-                            body="Let us support you on your big day with a warm‑up lesson, pick‑up and car hire for your test."
-                        />
-                        <ServiceCard
-                            href="/services/mock-tests"
-                            title="Mock Tests"
-                            body="Prepare for your test with realistic mock assessments so you know exactly what to expect."
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* WHY CHOOSE US WITH BI‑DIRECTIONAL SLIDING CAR */}
-            <section
-                ref={whyRef}
-                className="bg-[#f5f7fb] py-14 sm:py-16"
-            >
-                <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:flex-row lg:px-0">
-                    {/* Text */}
-                    <div className="w-full lg:w-[52%]">
-                        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                            Why Choose Us
-                        </h2>
-                        <p className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                            Confidence on the road starts here
-                        </p>
-
-                        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                            <Feature
-                                title="High pass rates"
-                                body="Our students learn and develop core skills needed to pass their driving test, helping them pass with confidence."
-                            />
-                            <Feature
-                                title="20+ years’ experience"
-                                body="Our qualified instructors have over 20 years of professional driving training experience between them."
-                            />
-                            <Feature
-                                title="Test‑day support"
-                                body="Special packages to support you on your test day, including a warm‑up lesson and car hire."
-                            />
-                            <Feature
-                                title="Keys2Drive accredited"
-                                body="Get a FREE lesson with Keys2Drive – a government‑funded program we are accredited to offer."
-                            />
-                            <Feature
-                                title="Safety focused"
-                                body="We teach the latest safe‑driving techniques in every lesson and prepare learners for real‑world conditions."
-                            />
-                            <Feature
-                                title="Competitive pricing"
-                                body="Some of the most affordable pricing in Brisbane, including discounted multi‑lesson packages."
-                            />
-                        </div>
-                    </div>
-
-                    {/* Car illustration: slides in/out based on visibility */}
-                    <div
-                        className={`w-full lg:w-[48%] transform transition-all duration-[8000ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
-                            carVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                        }`}
-                    >
-                        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)]">
-                            <img
-                                src="https://lirp.cdn-website.com/edba1fc3/dms3rep/multi/opt/truck+design-1920w.png"
-                                alt="Drive Academy training vehicle"
-                                className="h-56 w-full object-cover sm:h-64"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* PACKAGES & PRICING */}
-            <section className="bg-slate-950 py-14 sm:py-16">
-                <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0 text-white">
-                    <div className="text-center">
-                        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
                             Packages &amp; Pricing
                         </h2>
-                        <p className="mt-2 text-2xl font-bold sm:text-3xl">
+                        <p className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
                             Simple pricing that grows with you
                         </p>
                     </div>
@@ -238,30 +148,155 @@ export default function HomePage() {
                         />
                     </div>
 
-                    <div className="mt-10 rounded-3xl border border-slate-800 bg-slate-900/60 px-5 py-6 sm:flex sm:items-center sm:justify-between sm:px-8">
-                        <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                                Master Learner&apos;s Pack
-                            </p>
-                            <p className="mt-1 text-2xl font-bold text-white">$770</p>
-                            <ul className="mt-3 text-sm text-slate-200">
-                                <li>10 × 1hr driving lessons</li>
-                                <li>Free pick‑up and drop‑off</li>
-                                <li>Pre‑test warm‑up lesson</li>
-                                <li>Car hire for test</li>
-                            </ul>
-                        </div>
-                        <div className="mt-4 sm:mt-0">
-                            <a
-                                href='https://driveacademy.com.au/Cart?id=11460'
-                                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-900 hover:bg-slate-100"
-                            >
-                                Book Auto
-                            </a>
+                    <div className="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white shadow-lg">
+                        <div className="px-5 py-6 sm:flex sm:items-center sm:justify-between sm:px-8">
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                                    Master Learner&apos;s Pack
+                                </p>
+                                <p className="mt-1 text-3xl font-bold text-slate-900">$770</p>
+                                <ul className="mt-3 space-y-1 text-sm text-slate-700">
+                                    <li>✓ 10 × 1hr driving lessons</li>
+                                    <li>✓ Free pick‑up and drop‑off</li>
+                                    <li>✓ Pre‑test warm‑up lesson</li>
+                                    <li>✓ Car hire for test</li>
+                                </ul>
+                            </div>
+                            <div className="mt-4 sm:mt-0">
+                                <a
+                                    href='https://driveacademy.com.au/Cart?id=11460'
+                                    className="inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-8 py-3 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-lg hover:bg-[#ff4b26] hover:shadow-xl"
+                                >
+                                    Book Auto
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* OUR SERVICES (COLORED THEME) */}
+            {/* OUR SERVICES (DARKER BACKGROUND FOR BETTER READABILITY) */}
+            <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-14 sm:py-16">
+                <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0">
+                    <div className="text-center">
+                        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#ff6b4a]">
+                            Our Services
+                        </h2>
+                        <p className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+                            Everything you need to get your licence
+                        </p>
+                    </div>
+
+                    <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                        <ServiceCard
+                            href="/lessons?tab=lessons"
+                            title="Driving Lessons"
+                            body="Learn from our professional and supportive instructors with tailored manual and automatic lessons."
+                        />
+                        <ServiceCard
+                            href="/lessons?tab=test"
+                            title="Test Day Package"
+                            body="Let us support you on your big day with a warm‑up lesson, pick‑up and car hire for your test."
+                        />
+                        <ServiceCard
+                            href="/services/mock-tests"
+                            title="Mock Tests"
+                            body="Prepare for your test with realistic mock assessments so you know exactly what to expect."
+                        />
+                    </div>
+                </div>
+            </section>
+
+
+
+            {/* WHY CHOOSE US WITH YOUTUBE VIDEO */}
+            <section
+                ref={whyRef}
+                className="bg-[#f5f7fb] py-14 sm:py-16"
+            >
+                <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:flex-row lg:px-0">
+                    {/* Text */}
+                    <div className="w-full lg:w-[52%]">
+                        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+                            Why Choose Us
+                        </h2>
+                        <p className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                            Confidence on the road starts here
+                        </p>
+
+                        <div className="mt-6 grid gap-5">
+                            <Feature
+                                title="High pass rates"
+                                body="Our students learn and develop core skills needed to pass their driving test, helping them pass with confidence."
+                            />
+                            <Feature
+                                title="20+ years' experience"
+                                body="Our qualified instructors have over 20 years of professional driving training experience between them."
+                            />
+                            <Feature
+                                title="Test‑day support"
+                                body="Special packages to support you on your test day, including a warm‑up lesson and car hire."
+                            />
+                            <Feature
+                                title="Safety focused"
+                                body="We teach the latest safe‑driving techniques in every lesson and prepare learners for real‑world conditions."
+                            />
+                        </div>
+                    </div>
+
+                    {/* YouTube Video - slides in/out */}
+                    {/* YouTube Video - slides in/out */}
+                    <div
+                        className={`w-full lg:w-[48%] transform transition-all duration-[2000ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] ${
+                            videoVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
+                        }`}
+                    >
+                        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)]">
+                            <a
+                                href="https://www.youtube.com/watch?v=LeuI7mAIdik"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative block aspect-video w-full overflow-hidden bg-slate-900"
+                            >
+                                {/* YouTube Thumbnail */}
+                                <img
+                                    src="https://img.youtube.com/vi/LeuI7mAIdik/maxresdefault.jpg"
+                                    alt="Drive Academy Training Video"
+                                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                                />
+
+                                {/* Play Button Overlay */}
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/40">
+                                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#ff2c00] shadow-2xl transition-transform group-hover:scale-110">
+                                        <svg
+                                            className="ml-1 h-9 w-9 text-white"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                {/* Duration badge (optional) */}
+                                <div className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-xs font-semibold text-white">
+                                    Watch Video
+                                </div>
+                            </a>
+
+                            <div className="bg-slate-50 px-4 py-3">
+                                <p className="text-xs font-semibold text-slate-700">
+                                    Watch: Behind the wheel with Drive Academy
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
 
             {/* ABOUT + INSTRUCTORS */}
             <section className="bg-white py-14 sm:py-20">
@@ -397,18 +432,23 @@ function ServiceCard({ href, title, body }: ServiceCardProps) {
     return (
         <Link
             to={href}
-            className="group flex flex-col rounded-3xl border border-slate-200 bg-white p-5 text-left shadow-sm transition-transform hover:-translate-y-1 hover:shadow-[0_18px_60px_rgba(15,23,42,0.18)]"
+            className="group flex flex-col rounded-3xl border border-slate-700/50 bg-slate-800/50 backdrop-blur-sm p-6 text-left shadow-xl transition-all hover:-translate-y-1 hover:border-[#ff2c00]/50 hover:bg-slate-800 hover:shadow-2xl"
         >
-            <p className="text-sm font-semibold text-slate-900">{title}</p>
-            <p className="mt-2 text-xs leading-relaxed text-slate-600 sm:text-[13px]">
+            <p className="text-base font-bold text-white">{title}</p>
+            <p className="mt-3 text-sm leading-relaxed text-slate-300 sm:text-[15px]">
                 {body}
             </p>
-            <span className="mt-3 text-xs font-semibold text-sky-700 group-hover:text-sky-600">
-        Learn more →
-      </span>
+            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#ff6b4a] group-hover:gap-2 group-hover:text-[#ff4b26] transition-all">
+                Learn more
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </span>
         </Link>
     );
 }
+
+
 
 type PricingCardProps = {
     label: string;
@@ -430,25 +470,28 @@ function PricingCard({
                          badge,
                      }: PricingCardProps) {
     return (
-        <article className="flex flex-col overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/80 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.5)]">
+        <article className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-lg hover:shadow-2xl transition-shadow">
             {badge && (
                 <span className="self-start rounded-full bg-[#ff2c00] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
           {badge}
         </span>
             )}
-            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                 {label}
             </p>
-            <p className="mt-1 text-xs text-slate-300">{sublabel}</p>
-            <p className="mt-3 text-2xl font-bold text-white">{price}</p>
-            <ul className="mt-3 flex-1 space-y-1.5 text-xs text-slate-200">
+            <p className="mt-1 text-xs text-slate-600">{sublabel}</p>
+            <p className="mt-3 text-3xl font-bold text-slate-900">{price}</p>
+            <ul className="mt-4 flex-1 space-y-2 text-sm text-slate-700">
                 {features.map((f) => (
-                    <li key={f}>{f}</li>
+                    <li key={f} className="flex items-start gap-2">
+                        <span className="text-[#ff2c00]">✓</span>
+                        <span>{f}</span>
+                    </li>
                 ))}
             </ul>
             <a
                 href={href}
-                className="mt-4 inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-900 hover:bg-slate-100"
+                className="mt-5 inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-md hover:bg-[#ff4b26] hover:shadow-lg"
             >
                 {cta}
             </a>

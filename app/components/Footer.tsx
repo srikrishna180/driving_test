@@ -18,7 +18,7 @@ export function Footer() {
                     <div className="flex items-center gap-5">
                         {/* Facebook */}
                         <a
-                            href="https://www.facebook.com"
+                            href="https://www.facebook.com/driveacademy1/"
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -34,7 +34,7 @@ export function Footer() {
 
                         {/* YouTube */}
                         <a
-                            href="https://www.youtube.com"
+                            href="https://www.youtube.com/@driveacademy"
                             target="_blank"
                             rel="noreferrer"
                             className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700"
@@ -49,20 +49,20 @@ export function Footer() {
                         </a>
 
                         {/* Instagram */}
-                        <a
-                            href="https://www.instagram.com"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700"
-                            aria-label="Instagram"
-                        >
-                            <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 2.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm4.75-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25Z"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                        </a>
+                        {/*<a*/}
+                        {/*    href="https://www.instagram.com"*/}
+                        {/*    target="_blank"*/}
+                        {/*    rel="noreferrer"*/}
+                        {/*    className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-slate-100 hover:bg-slate-700"*/}
+                        {/*    aria-label="Instagram"*/}
+                        {/*>*/}
+                        {/*    <svg className="h-6 w-6" viewBox="0 0 24 24" aria-hidden="true">*/}
+                        {/*        <path*/}
+                        {/*            d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 2.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm4.75-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25Z"*/}
+                        {/*            fill="currentColor"*/}
+                        {/*        />*/}
+                        {/*    </svg>*/}
+                        {/*</a>*/}
                     </div>
                 </div>
 

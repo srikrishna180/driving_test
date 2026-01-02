@@ -1,4 +1,4 @@
-// routes/locations.tsx
+// routes/service-areas.tsx
 import { Fragment } from "react";
 
 const PHONE = "0420 585 553";

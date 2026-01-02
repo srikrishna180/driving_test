@@ -3,11 +3,12 @@ import { Link, NavLink, useLocation } from "react-router";
 import { useState } from "react";
 
 const navItems = [
-    { to: "/instructors", label: "Instructors" },
-    { to: "/lessons", label: "Lessons" },
+    // { to: "/instructors", label: "Instructors" },
+    // { to: "/lessons", label: "Lessons" },
     { to: "/packages", label: "Packages" },
     { to: "/testimonials", label: "Testimonials" },
-    { to: "/locations", label: "Location" },
+    { to: "/service-areas", label: "Service Areas" },
+    { to: "/videos", label: "Videos" },
     { to: "/contact", label: "Contact" },
 ];
 
@@ -21,29 +22,30 @@ export function Navbar() {
             : location.pathname.startsWith(path);
 
     return (
-        <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-            <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-0">
+        <header className="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-sm">
+            <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
                 {/* Left: logo */}
-                <Link to="/" className="flex items-center gap-2">
-                    <img
-                        src="/logo-driveacademy.svg"
-                        alt="Drive Academy"
-                        className="h-8 w-auto"
-                    />
+                <Link to="/" className="flex items-center gap-2 shrink-0">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#ff2c00] text-lg font-bold text-white">
+                        DA
+                    </div>
+                    <span className="hidden text-base font-bold text-slate-900 sm:block">
+                        Drive Academy
+                    </span>
                 </Link>
 
                 {/* Center: desktop nav */}
-                <div className="hidden items-center gap-6 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700 md:flex">
+                <div className="hidden items-center gap-6 text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-700 lg:flex xl:gap-7">
                     {navItems.map((item) => (
                         <NavLink
                             key={item.to}
                             to={item.to}
                             className={({ isActive }) =>
                                 [
-                                    "transition-colors",
+                                    "whitespace-nowrap transition-colors hover:text-[#ff2c00]",
                                     isActive || isActivePath(item.to)
-                                        ? "text-slate-900"
-                                        : "text-slate-500 hover:text-slate-900",
+                                        ? "text-[#ff2c00]"
+                                        : "text-slate-600",
                                 ].join(" ")
                             }
                         >
@@ -53,23 +55,22 @@ export function Navbar() {
                 </div>
 
                 {/* Right: phone + login + CTA (desktop) */}
-                <div className="hidden items-center gap-4 md:flex">
+                <div className="hidden items-center gap-3 lg:flex xl:gap-4">
                     <a
                         href="tel:0402585553"
-                        className="flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-600 hover:text-slate-900"
+                        className="flex items-center gap-2 whitespace-nowrap text-sm font-bold text-slate-900 transition-colors hover:text-[#ff2c00]"
                     >
                         <svg
                             className="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
-                            aria-hidden="true"
                         >
                             <path
-                                d="M5.5 4.5 8 4l2 4-2 1c.6 1.4 1.6 2.7 3 3.9 1.3 1.2 2.6 2.1 4 2.7l1-2 4 2.1-.5 2.5c-.1.7-.6 1.3-1.3 1.5-1.3.4-3.4.2-6.1-1.1-2.6-1.3-4.9-3.2-7-5.7-2.1-2.5-3.4-4.9-3.9-7.2-.3-1.2-.3-2.1 0-2.8.2-.7.8-1.2 1.5-1.3Z"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth={1.6}
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                             />
                         </svg>
                         0402 585 553
@@ -77,51 +78,52 @@ export function Navbar() {
 
                     <a
                         href="https://driveacademy.com.au/Login"
-                        className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-600 hover:text-slate-900"
+                        className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-600 transition-colors hover:text-slate-900"
                     >
                         Login
                     </a>
 
                     <a
                         href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
-                        className="inline-flex items-center rounded-full bg-[#ff2c00] px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-[#ff4b26]"
+                        className="inline-flex items-center whitespace-nowrap rounded-full bg-[#ff2c00] px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white shadow-lg transition-all hover:bg-[#e62800] hover:shadow-xl"
                     >
                         Book Now
                     </a>
                 </div>
 
                 {/* Mobile: Book Now + menu toggle */}
-                <div className="flex items-center gap-2 md:hidden">
+                <div className="flex items-center gap-2 lg:hidden">
                     <a
                         href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
-                        className="inline-flex items-center rounded-full bg-[#ff2c00] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white hover:bg-[#ff4b26]"
+                        className="inline-flex items-center whitespace-nowrap rounded-full bg-[#ff2c00] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-white hover:bg-[#e62800]"
                     >
                         Book Now
                     </a>
                     <button
                         type="button"
                         onClick={() => setOpen((v) => !v)}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-slate-800"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50"
                     >
                         <span className="sr-only">Toggle navigation</span>
                         <svg
-                            className="h-4 w-4"
+                            className="h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
-                            aria-hidden="true"
                         >
                             {open ? (
                                 <path
-                                    d="M6 18L18 6M6 6l12 12"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
                                     strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
                                 />
                             ) : (
                                 <path
-                                    d="M4 7h16M4 12h16M4 17h16"
-                                    stroke="currentColor"
-                                    strokeWidth={2}
                                     strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M4 6h16M4 12h16M4 18h16"
                                 />
                             )}
                         </svg>
@@ -131,26 +133,25 @@ export function Navbar() {
 
             {/* Mobile menu */}
             {open && (
-                <div className="border-t border-slate-200 bg-white md:hidden">
-                    <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-700">
+                <div className="border-t border-slate-200 bg-white lg:hidden">
+                    <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
                         {/* Phone + Login row */}
-                        <div className="mb-2 flex items-center justify-between">
+                        <div className="mb-3 flex items-center justify-between border-b border-slate-100 pb-3">
                             <a
                                 href="tel:0402585553"
-                                className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600"
+                                className="flex items-center gap-2 text-sm font-bold text-slate-900"
                             >
                                 <svg
                                     className="h-4 w-4"
+                                    fill="none"
+                                    stroke="currentColor"
                                     viewBox="0 0 24 24"
-                                    aria-hidden="true"
                                 >
                                     <path
-                                        d="M5.5 4.5 8 4l2 4-2 1c.6 1.4 1.6 2.7 3 3.9 1.3 1.2 2.6 2.1 4 2.7l1-2 4 2.1-.5 2.5c-.1.7-.6 1.3-1.3 1.5-1.3.4-3.4.2-6.1-1.1-2.6-1.3-4.9-3.2-7-5.7-2.1-2.5-3.4-4.9-3.9-7.2-.3-1.2-.3-2.1 0-2.8.2-.7.8-1.2 1.5-1.3Z"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth={1.6}
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                                     />
                                 </svg>
                                 0402 585 553
@@ -158,7 +159,7 @@ export function Navbar() {
                             <a
                                 href="https://driveacademy.com.au/Login"
                                 onClick={() => setOpen(false)}
-                                className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600"
+                                className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600"
                             >
                                 Login
                             </a>
@@ -172,9 +173,9 @@ export function Navbar() {
                                 onClick={() => setOpen(false)}
                                 className={({ isActive }) =>
                                     [
-                                        "rounded-md px-2 py-2",
+                                        "rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.12em]",
                                         isActive || isActivePath(item.to)
-                                            ? "bg-slate-100 text-slate-900"
+                                            ? "bg-[#ff2c00]/10 text-[#ff2c00]"
                                             : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
                                     ].join(" ")
                                 }
@@ -182,7 +183,6 @@ export function Navbar() {
                                 {item.label}
                             </NavLink>
                         ))}
-                        {/* no extra Book button here – it's beside hamburger already */}
                     </div>
                 </div>
             )}
