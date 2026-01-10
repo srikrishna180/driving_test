@@ -52,8 +52,19 @@ const TEST_PACKAGES: TestPackage[] = [
 ];
 
 export function meta() {
-    return [{ title: "Lessons | Drive Academy" }];
+    return [
+        { title: "Driving Lessons Brisbane | Manual & Automatic | Drive Academy" },
+        {
+            name: "description",
+            content: "Brisbane driving lessons from $99. Manual & automatic options with experienced TMR instructors. Free pick-up/drop-off included. Multi-lesson packs available."
+        },
+        { property: "og:title", content: "Driving Lessons Brisbane | Manual & Automatic" },
+        { property: "og:description", content: "Brisbane driving lessons from $99. Manual & automatic options with free pick-up/drop-off." },
+        { property: "og:type", content: "website" },
+        { name: "keywords", content: "driving lessons Brisbane, driving lesson prices, automatic lessons Queensland, manual driving Brisbane, learner packages" },
+    ];
 }
+
 
 export default function LessonsPage(_props: Route.ComponentProps) {
     const [searchParams, setSearchParams] = useSearchParams();

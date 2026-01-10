@@ -55,8 +55,19 @@ const instructor: Instructor = {
 };
 
 export function meta() {
-    return [{ title: "Instructor – Tas Khan | Drive Academy" }];
+    return [
+        { title: "Meet Tas Khan - TMR Accredited Instructor | Drive Academy" },
+        {
+            name: "description",
+            content: "Tas Khan is a TMR accredited instructor with 20+ years experience helping Brisbane learners pass first time. Patient, professional driving instruction."
+        },
+        { property: "og:title", content: "Tas Khan - TMR Accredited Driving Instructor" },
+        { property: "og:description", content: "20+ years experience helping Brisbane learners pass first time. Patient, professional instruction." },
+        { property: "og:type", content: "profile" },
+        { name: "keywords", content: "TMR accredited instructor Brisbane, driving instructor Tas Khan, experienced driving teacher Queensland" },
+    ];
 }
+
 
 export default function InstructorPage() {
     const [tab, setTab] = useState<"overview" | "testimonials">("overview");

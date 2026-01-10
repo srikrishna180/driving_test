@@ -114,8 +114,19 @@ export const testimonials = [
 
 
 export function meta() {
-    return [{ title: "Testimonials | Drive Academy" }];
+    return [
+        { title: "Student Reviews & Testimonials | Drive Academy Brisbane" },
+        {
+            name: "description",
+            content: "Read reviews from students who passed their driving test with Drive Academy. 5-star rated TMR instructors in Brisbane. See what our learners say."
+        },
+        { property: "og:title", content: "Student Reviews & Testimonials | Drive Academy" },
+        { property: "og:description", content: "5-star rated TMR instructors. Read reviews from Brisbane students who passed first time." },
+        { property: "og:type", content: "website" },
+        { name: "keywords", content: "driving school reviews Brisbane, Drive Academy testimonials, learner driver reviews Queensland" },
+    ];
 }
+
 
 export default function TestimonialsPage(_props: Route.ComponentProps) {
     const renderStars = (count: number) => (

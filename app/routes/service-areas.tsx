@@ -98,8 +98,19 @@ const AREAS_COLUMNS: string[][] = [
 ];
 
 export function meta() {
-    return [{ title: "Drive Academy | Locations" }];
+    return [
+        { title: "Service Areas Brisbane | Free Pick-up & Drop-off | Drive Academy" },
+        {
+            name: "description",
+            content: "Drive Academy serves most Brisbane suburbs with free pick-up and drop-off. Check if we service your area for driving lessons in Queensland."
+        },
+        { property: "og:title", content: "Brisbane Service Areas | Drive Academy" },
+        { property: "og:description", content: "Free pick-up and drop-off across Brisbane suburbs. Check your area for driving lessons." },
+        { property: "og:type", content: "website" },
+        { name: "keywords", content: "driving lessons Brisbane suburbs, driving school service areas Queensland, mobile driving instructor Brisbane" },
+    ];
 }
+
 
 export default function LocationsPage() {
     return (

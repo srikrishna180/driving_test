@@ -4,14 +4,19 @@ import { Link } from "react-router";
 
 export function meta() {
     return [
-        { title: "Drive Academy | Brisbane Driving Lessons" },
+        { title: "Drive Academy Brisbane | Accredited Driving Lessons QLD" },
         {
             name: "description",
-            content:
-                "Professional manual & automatic driving lessons in Brisbane, QLD. High pass rates, 20+ years' experience, test‑day packages and competitive pricing.",
+            content: "Professional manual & automatic driving lessons in Brisbane with 20+ years experience. TMR accredited instructors, free pick-up/drop-off. Book your first lesson today."
         },
+        { property: "og:title", content: "Drive Academy Brisbane | Accredited Driving Lessons QLD" },
+        { property: "og:description", content: "Professional manual & automatic driving lessons in Brisbane with 20+ years experience. TMR accredited instructors, free pick-up/drop-off." },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "https://yourwebsite.com" },
+        { name: "keywords", content: "driving lessons Brisbane, driving school Queensland, learner driver Brisbane, TMR accredited instructor, automatic driving lessons, manual driving lessons" },
     ];
 }
+
 
 export default function HomePage() {
     const whyRef = useRef<HTMLElement | null>(null);
@@ -41,15 +46,20 @@ export default function HomePage() {
             {/* HERO WITH VIDEO BACKGROUND */}
             <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
                 <video
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                     autoPlay
                     muted
                     loop
                     playsInline
                 >
                     <source
-                        src="https://vid.cdn-website.com/edba1fc3/videos/eV4gBPyQ9Sb5GKWol0zA_ALC+Video+2025-v.mp4"
+                        src="https://coverr.co/videos/blurred-car-lights-on-road-4K.mp4"
                         type="video/mp4"
+                    />
+                    <img
+                        src="/hero-fallback.jpg"
+                        alt="Drive Academy Brisbane - Professional Driving Lessons"
+                        className="w-full h-full object-cover"
                     />
                 </video>
 

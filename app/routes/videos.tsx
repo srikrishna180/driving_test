@@ -5,14 +5,18 @@ import { videos, getCategories, type VideoData } from "~/data/videos";
 
 export function meta() {
     return [
-        { title: "Videos | Drive Academy Brisbane" },
+        { title: "Driving Test Videos & Route Guides | Drive Academy Brisbane" },
         {
             name: "description",
-            content:
-                "Watch our driving lessons, mock tests, and test day tips. Learn from real driving test footage and expert instruction from Drive Academy Brisbane.",
+            content: "Watch mock tests, driving test routes, and lessons from Drive Academy instructors. Real footage and expert tips to help you pass in Brisbane."
         },
+        { property: "og:title", content: "Driving Test Videos & Route Guides" },
+        { property: "og:description", content: "Mock tests, route guides, and driving tips from Brisbane instructors. Real footage to help you pass." },
+        { property: "og:type", content: "website" },
+        { name: "keywords", content: "driving test videos Brisbane, Ipswich test route, mock driving test, learner driver tips Queensland" },
     ];
 }
+
 
 export default function VideosPage(_props: Route.ComponentProps) {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");

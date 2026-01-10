@@ -5,10 +5,23 @@ import { packages } from "~/data/packages";
 
 export function meta({ params }: Route.MetaArgs) {
     const pkg = packages.find((p) => p.slug === params.slug);
+
+    if (!pkg) {
+        return [{ title: "Package Not Found | Drive Academy" }];
+    }
+
     return [
-        { title: pkg ? `${pkg.name} | Packages` : "Package not found" },
+        { title: `${pkg.name} - ${pkg.price} | Drive Academy Brisbane` },
+        {
+            name: "description",
+            content: `${pkg.name} for ${pkg.price}. ${pkg.includes.slice(0, 2).join('. ')}. Book your driving lessons in Brisbane today.`
+        },
+        { property: "og:title", content: `${pkg.name} - ${pkg.price}` },
+        { property: "og:description", content: `${pkg.includes.slice(0, 2).join('. ')}.` },
+        { property: "og:type", content: "product" },
     ];
 }
+
 
 export default function PackageDetailPage(_props: Route.ComponentProps) {
     const { slug } = useParams<{ slug: string }>();

@@ -20,8 +20,19 @@ const SUBJECT_OPTIONS = [
 ];
 
 export function meta() {
-    return [{ title: "Contact Drive Academy" }];
+    return [
+        { title: "Contact Drive Academy Brisbane | Book Your Driving Lesson" },
+        {
+            name: "description",
+            content: "Get in touch with Drive Academy Brisbane. Book driving lessons, ask about packages or get a quote. Email: infodriveacademy@gmail.com. Serving Brisbane suburbs."
+        },
+        { property: "og:title", content: "Contact Drive Academy Brisbane" },
+        { property: "og:description", content: "Book driving lessons or get a quote. Serving Brisbane suburbs with free pick-up/drop-off." },
+        { property: "og:type", content: "website" },
+        { name: "keywords", content: "contact driving school Brisbane, book driving lessons Brisbane, driving instructor contact Queensland" },
+    ];
 }
+
 
 export default function ContactPage(_props: Route.ComponentProps) {
     const actionData = useActionData<typeof action>();

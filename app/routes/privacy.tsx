@@ -2,8 +2,17 @@
 import type { Route } from "./+types/privacy";
 
 export function meta() {
-    return [{ title: "Privacy Policy | Drive Academy" }];
+    return [
+        { title: "Privacy Policy | Drive Academy Brisbane" },
+        {
+            name: "description",
+            content: "Drive Academy privacy policy. Learn how we collect, use, and protect your personal information when booking driving lessons."
+        },
+        { property: "og:title", content: "Privacy Policy | Drive Academy" },
+        { name: "robots", content: "noindex, follow" }, // Don't index legal pages
+    ];
 }
+
 
 export default function PrivacyPage(_props: Route.ComponentProps) {
     return (

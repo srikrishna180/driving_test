@@ -12,8 +12,19 @@ const CATEGORIES = [
 type CategoryId = (typeof CATEGORIES)[number]["id"];
 
 export function meta() {
-    return [{ title: "Packages | Drive Academy" }];
+    return [
+        { title: "Driving Lesson Packages Brisbane | Save with Multi-Lesson Deals" },
+        {
+            name: "description",
+            content: "Save on driving lessons with our packages. Master Learner's Pack $770 includes everything to get your licence. Auto & manual options available in Brisbane."
+        },
+        { property: "og:title", content: "Driving Lesson Packages Brisbane | Drive Academy" },
+        { property: "og:description", content: "Save on driving lessons with our packages. Master Learner's Pack $770 includes everything to get your licence." },
+        { property: "og:type", content: "website" },
+        { name: "keywords", content: "driving lesson packages Brisbane, learner pack Queensland, driving test package, bulk driving lessons" },
+    ];
 }
+
 
 export default function PackagesPage(_props: Route.ComponentProps) {
     const [searchParams, setSearchParams] = useSearchParams();

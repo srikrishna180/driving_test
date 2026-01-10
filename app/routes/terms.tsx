@@ -2,8 +2,17 @@
 import type { Route } from "./+types/terms";
 
 export function meta() {
-    return [{ title: "Terms of Service | Drive Academy" }];
+    return [
+        { title: "Terms of Service | Drive Academy Brisbane" },
+        {
+            name: "description",
+            content: "Drive Academy terms of service including booking terms, cancellation policy, and refund policy for driving lessons in Brisbane."
+        },
+        { property: "og:title", content: "Terms of Service | Drive Academy" },
+        { name: "robots", content: "noindex, follow" }, // Don't index legal pages
+    ];
 }
+
 
 export default function TermsPage(_props: Route.ComponentProps) {
     return (
