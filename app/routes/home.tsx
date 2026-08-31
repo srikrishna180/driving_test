@@ -1,6 +1,7 @@
 // routes/_index.tsx
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
+import { bookingUrl, packageUrl } from "../config";
 
 export function meta() {
     return [
@@ -12,7 +13,7 @@ export function meta() {
         { property: "og:title", content: "Drive Academy Brisbane | Accredited Driving Lessons QLD" },
         { property: "og:description", content: "Professional manual & automatic driving lessons in Brisbane with 20+ years experience. TMR accredited instructors, free pick-up/drop-off." },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "https://yourwebsite.com" },
+        { property: "og:url", content: "https://www.driveacademy.au" },
         { name: "keywords", content: "driving lessons Brisbane, driving school Queensland, learner driver Brisbane, TMR accredited instructor, automatic driving lessons, manual driving lessons" },
     ];
 }
@@ -84,7 +85,7 @@ export default function HomePage() {
                         <div className="flex flex-wrap items-center gap-4 pt-2">
                             {/* Bigger button */}
                             <a
-                                href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                                href={bookingUrl()}
                                 className="inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-8 py-3.5 text-base font-bold uppercase tracking-[0.18em] text-white shadow-xl hover:bg-[#ff4b26] hover:shadow-2xl"
                             >
                                 Book a Lesson
@@ -124,7 +125,7 @@ export default function HomePage() {
                                 "Male & Female instructors",
                             ]}
                             cta="Book Auto"
-                            href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                            href={bookingUrl()}
                         />
 
                         <PricingCard
@@ -139,7 +140,7 @@ export default function HomePage() {
                                 "Private instruction",
                             ]}
                             cta="Book Auto"
-                            href='https://driveacademy.com.au/Cart?id=11461'
+                            href={packageUrl("automatic-1-hour-voucher")}
                         />
 
                         <PricingCard
@@ -154,7 +155,7 @@ export default function HomePage() {
                                 "*Excludes TMR fees",
                             ]}
                             cta="Book Auto"
-                            href='https://driveacademy.com.au/Cart?id=11458'
+                            href={packageUrl("automatic-test-day-package")}
                         />
                     </div>
 
@@ -174,7 +175,7 @@ export default function HomePage() {
                             </div>
                             <div className="mt-4 sm:mt-0">
                                 <a
-                                    href='https://driveacademy.com.au/Cart?id=11460'
+                                    href={packageUrl("automatic-grand-master-package")}
                                     className="inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-8 py-3 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-lg hover:bg-[#ff4b26] hover:shadow-xl"
                                 >
                                     Book Auto
@@ -400,7 +401,7 @@ export default function HomePage() {
                             </p>
                         </div>
                         <a
-                            href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                            href={bookingUrl()}
                             className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm hover:bg-slate-800"
                         >
                             Book Now

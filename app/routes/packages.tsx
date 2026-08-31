@@ -2,6 +2,8 @@
 import { Link, useSearchParams } from "react-router";
 import type { Route } from "./+types/packages";
 import { packages } from "~/data/packages";
+import { PackageArt } from "../components/PackageArt";
+import { AddToCart } from "../components/AddToCart";
 
 const CATEGORIES = [
     { id: "all", label: "All" },
@@ -89,11 +91,19 @@ export default function PackagesPage(_props: Route.ComponentProps) {
                                 {/* Image area with full artwork visible */}
                                 <div className="relative bg-slate-50">
                                     <div className="aspect-[4/3] w-full">
-                                        <img
-                                            src={pkg.imageUrl}
-                                            alt={pkg.name}
-                                            className="h-full w-full object-contain"
-                                        />
+                                        {pkg.imageUrl ? (
+                                            <img
+                                                src={pkg.imageUrl}
+                                                alt={pkg.name}
+                                                className="h-full w-full object-contain"
+                                            />
+                                        ) : (
+                                            <PackageArt
+                                                label={pkg.artLabel}
+                                                variant={pkg.artVariant}
+                                                className="h-full w-full"
+                                            />
+                                        )}
                                     </div>
                   {/*                  <span className="absolute left-0 top-0 bg-[#ff2c00] px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-white">*/}
                   {/*  {pkg.badge}*/}
@@ -116,11 +126,7 @@ export default function PackagesPage(_props: Route.ComponentProps) {
                             </Link>
 
                             <div className="border-t border-slate-100 px-4 pb-4 pt-3 sm:px-5">
-                                <a
-                                    href={pkg.href}
-                                    className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-colors group-hover:bg-slate-800">
-                                    Add to Cart
-                                </a>
+                                <AddToCart slug={pkg.slug} size="sm" />
                             </div>
                         </article>
                     ))}

@@ -1,6 +1,7 @@
 // routes/lessons.tsx
 import type { Route } from "./+types/lessons";
 import { useSearchParams } from "react-router";
+import { bookingUrl, packageUrl } from "../config";
 
 type LessonRow = {
     service: string;
@@ -33,7 +34,7 @@ const TEST_PACKAGES: TestPackage[] = [
             "Car hire for test",
             "*Excludes TMR booking fee",
         ],
-        href: "https://driveacademy.com.au/Cart?id=11458",
+        href: packageUrl("automatic-test-day-package"),
         ctaLabel: "Buy Auto Pack",
     },
     {
@@ -46,7 +47,7 @@ const TEST_PACKAGES: TestPackage[] = [
             "Car hire for test",
             "*Excludes TMR booking fee",
         ],
-        href: "https://driveacademy.com.au/Cart?id=11460",
+        href: packageUrl("automatic-grand-master-package"),
         ctaLabel: "Buy Auto Pack",
     },
 ];
@@ -125,7 +126,7 @@ function DrivingLessonsTab() {
             {/* Hero */}
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
                 <img
-                    src="https://cdn.bookingtimes.com/Common/LoadImage?Id=66892&v=1"
+                    src="/images/lesson-car.png"
                     alt="Driving lesson car"
                     className="h-64 w-full object-cover sm:h-80"
                 />
@@ -208,7 +209,7 @@ function DrivingLessonsTab() {
             {/* CTA */}
             <div className="flex justify-center">
                 <a
-                    href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                    href={bookingUrl()}
                     className="inline-flex items-center justify-center rounded-full bg-slate-900 px-10 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800">
                     Book Lessons
                 </a>
@@ -225,8 +226,9 @@ function DrivingTestPackageTab() {
             {/* Hero */}
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
                 <img
-                    src="https://cdn.bookingtimes.com/Common/LoadImage?Id=380282&v=1"
+                    src="/images/licence-success.jpg"
                     alt="Student holding licence after test"
+                    loading="lazy"
                     className="h-64 w-full object-cover sm:h-80"
                 />
             </div>
@@ -283,7 +285,7 @@ function DrivingTestPackageTab() {
             {/* CTA */}
             <div className="flex justify-center">
                 <a
-                    href='https://driveacademy.com.au/Cart?id=11460'
+                    href={packageUrl("automatic-grand-master-package")}
                     className="inline-flex items-center justify-center rounded-full bg-slate-900 px-10 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800">
                     Book Test Package
                 </a>

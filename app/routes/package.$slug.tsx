@@ -2,6 +2,8 @@
 import type { Route } from "./+types/package.$slug";
 import { Link, useParams } from "react-router";
 import { packages } from "~/data/packages";
+import { PackageArt } from "../components/PackageArt";
+import { AddToCart } from "../components/AddToCart";
 
 export function meta({ params }: Route.MetaArgs) {
     const pkg = packages.find((p) => p.slug === params.slug);
@@ -59,11 +61,19 @@ export default function PackageDetailPage(_props: Route.ComponentProps) {
                     {/* Header row */}
                     <div className="grid gap-8 px-6 pb-6 pt-6 sm:px-8 sm:pt-8 md:grid-cols-[minmax(0,260px)_minmax(0,1fr)]">
                         <div className="overflow-hidden rounded-2xl border border-slate-100">
-                            <img
-                                src={pkg.imageUrl}
-                                alt={pkg.name}
-                                className="h-60 w-full object-cover sm:h-72"
-                            />
+                            {pkg.imageUrl ? (
+                                <img
+                                    src={pkg.imageUrl}
+                                    alt={pkg.name}
+                                    className="h-60 w-full object-cover sm:h-72"
+                                />
+                            ) : (
+                                <PackageArt
+                                    label={pkg.artLabel}
+                                    variant={pkg.artVariant}
+                                    className="h-60 w-full sm:h-72"
+                                />
+                            )}
                         </div>
 
                         <div className="flex flex-col justify-between gap-6">
@@ -80,11 +90,7 @@ export default function PackageDetailPage(_props: Route.ComponentProps) {
                             </div>
 
                             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-                                <a
-                                    href={pkg.href}
-                                    className="inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 sm:w-auto">
-                                    Add to Cart
-                                </a>
+                                <AddToCart slug={pkg.slug} size="lg" className="sm:max-w-xs" />
                             </div>
                         </div>
                     </div>

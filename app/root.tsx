@@ -11,6 +11,8 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import {Navbar} from "~/components/Navbar";
 import {Footer} from "~/components/Footer";
+import { CartBar } from "~/components/MiniCart";
+import { CartClearOnPurchase } from "~/components/CartClearOnPurchase";
 
 export const links: Route.LinksFunction = () => [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -21,7 +23,10 @@ export const links: Route.LinksFunction = () => [
     },
     {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+        // Same families as the booking app — the tokens in app.css name them,
+        // and a customer moving between the two sites must not see the type
+        // change under them.
+        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap",
     },
 ];
 
@@ -117,7 +122,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </head>
         <body>
         <Navbar />
+        <CartClearOnPurchase />
         {children}
+        <CartBar />
         <ScrollRestoration />
         <Scripts />
         <Footer />

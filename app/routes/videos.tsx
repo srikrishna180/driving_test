@@ -2,6 +2,7 @@
 import type { Route } from "./+types/videos";
 import { useState } from "react";
 import { videos, getCategories, type VideoData } from "~/data/videos";
+import { bookingUrl } from "../config";
 
 export function meta() {
     return [
@@ -100,7 +101,7 @@ export default function VideosPage(_props: Route.ComponentProps) {
                         </p>
                         <div className="mt-6 flex flex-wrap justify-center gap-3">
                             <a
-                                href="https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103"
+                                href={bookingUrl()}
                                 className="inline-flex items-center justify-center rounded-full bg-[#ff2c00] px-7 py-3 text-sm font-bold uppercase tracking-[0.16em] text-white shadow-xl hover:bg-[#ff4b26]"
                             >
                                 Book a Lesson

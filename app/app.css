@@ -1,10 +1,75 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens — SHARED WITH THE BOOKING APP.
+ *
+ * This block is a copy of the same block in the app repo's app/app.css. The
+ * booking pages here render data from that app, and the account pages live
+ * over there, so a customer moving between the two must not feel the seam.
+ * When you re-theme a customer, change both files together.
+ *
+ * Tailwind v4 turns each `--color-x` into utilities that reference the
+ * variable rather than inlining it, so redefining them under
+ * `prefers-color-scheme: dark` re-themes everything at once. Never hardcode a
+ * colour in a component; add a token here.
+ */
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-head: "Archivo", "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-ground: #f2f4f5;
+  --color-surface: #ffffff;
+  --color-surface-2: #e9ecee;
+  --color-surface-3: #f7f9fa;
+  --color-line: #dce1e3;
+  --color-line-firm: #c6ced2;
+
+  --color-ink: #14181a;
+  --color-ink-2: #59636a;
+  --color-ink-3: #8b959b;
+
+  --color-accent: #b4530b;
+  --color-accent-ink: #8a3f08;
+  --color-accent-soft: #fbeedf;
+  --color-accent-line: #e8c79e;
+  --color-on-accent: #ffffff;
+
+  --color-good: #1f7a4d;
+  --color-good-soft: #e2f1e9;
+  --color-crit: #b3261e;
+  --color-crit-soft: #fbe7e5;
+  --color-calm: #4a6e8a;
+  --color-calm-soft: #e5edf3;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ground: #0f1315;
+    --color-surface: #171c1f;
+    --color-surface-2: #1f262a;
+    --color-surface-3: #141a1d;
+    --color-line: #2a3338;
+    --color-line-firm: #3a464c;
+
+    --color-ink: #e8edef;
+    --color-ink-2: #97a3a9;
+    --color-ink-3: #6b777d;
+
+    --color-accent: #f2a03d;
+    --color-accent-ink: #ffc178;
+    --color-accent-soft: #2c2116;
+    --color-accent-line: #5a4425;
+    --color-on-accent: #21160a;
+
+    --color-good: #46b77e;
+    --color-good-soft: #17281f;
+    --color-crit: #f0736a;
+    --color-crit-soft: #2c1917;
+    --color-calm: #7fa9c9;
+    --color-calm-soft: #16222b;
+  }
+}
 html,
 body {
   @apply bg-white dark:bg-gray-950;

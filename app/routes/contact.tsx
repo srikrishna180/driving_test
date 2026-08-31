@@ -165,10 +165,10 @@ export default function ContactPage(_props: Route.ComponentProps) {
                     <div className="flex gap-2">
                         <span className="w-16 font-semibold text-slate-700">Email:</span>
                         <a
-                            href="mailto:info@driveacademy.com.au"
+                            href="mailto:info@driveacademy.au"
                             className="text-rose-600 hover:text-rose-500"
                         >
-                            info@driveacademy.com.au
+                            info@driveacademy.au
                         </a>
                     </div>
                 </div>

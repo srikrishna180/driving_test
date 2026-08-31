@@ -1,3 +1,4 @@
+import { packageUrl } from "../config";
 // src/data/packages.ts
 export type PackageCategory = "automatic-packages" | "lesson-vouchers";
 
@@ -7,7 +8,11 @@ export type PackageDetail = {
     name: string;
     price: string;
     badge?: "AUTO";
-    imageUrl: string;
+    /** Real photography, if the customer has any. Falls back to PackageArt. */
+    imageUrl?: string;
+    /** Headline spec drawn on the fallback artwork, e.g. "10 × 1HR LESSONS". */
+    artLabel: string;
+    artVariant?: "package" | "voucher";
     category: PackageCategory;
     includesTitle: string;
     includes: string[];
@@ -20,10 +25,10 @@ export const packages: PackageDetail[] = [
     {
         id: "auto-test-day",
         slug: "automatic-test-day-package",
+        artLabel: "WARM-UP + CAR",
         name: "(Automatic) Test Day Package",
         price: "$180.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=66621&Thumbnail=Y&v=5",
         category: "automatic-packages",
         includesTitle: "This package includes:",
         includes: [
@@ -40,15 +45,15 @@ export const packages: PackageDetail[] = [
             "Once you book your test package, Drive Academy will be in contact with you to get confirmation screenshot.",
             "Please book the package 1hr before your actual test. This will be the time we pick you up for your pre‑test lesson.",
         ],
-        href: "https://driveacademy.com.au/Cart?id=11458",
+        href: packageUrl("automatic-test-day-package"),
     },
     {
         id: "auto-gold",
         slug: "automatic-gold-package",
+        artLabel: "10 × 1HR LESSONS",
         name: "(Automatic) Gold Package",
         price: "$600.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=66618&Thumbnail=Y&v=2",
         category: "automatic-packages",
         includesTitle: "This package includes:",
         includes: [
@@ -57,27 +62,27 @@ export const packages: PackageDetail[] = [
             "• Split this into 10 x 1 hour lessons",
             "• or 5 x 2 hour lessons",
         ],
-        href: "https://driveacademy.com.au/Cart?id=11454",
+        href: packageUrl("automatic-gold-package"),
     },
     {
         id: "auto-silver",
         slug: "automatic-silver-package",
+        artLabel: "5 × 1HR LESSONS",
         name: "(Automatic) Silver Package",
         price: "$325.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=66531&Thumbnail=Y&v=2",
         category: "automatic-packages",
         includesTitle: "This package includes:",
         includes: ["5 x 1hr Automatic Driving Lesson"],
-        href: "https://driveacademy.com.au/Cart?id=11444",
+        href: packageUrl("automatic-silver-package"),
     },
     {
         id: "starter-kit",
         slug: "starter-kit",
+        artLabel: "3 × 1HR LESSONS",
         name: "Starter Kit",
         price: "$198.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=208627&Thumbnail=Y&v=4",
         category: "automatic-packages",
         includesTitle: "Introducing our Learner Starter Pack:",
         includes: [
@@ -88,39 +93,41 @@ export const packages: PackageDetail[] = [
             "Valid for new learners only, one use per person.",
             "Drive Academy reserve the right to convert package to normal lesson rate if student has already used this package before.",
         ],
-        href: "https://driveacademy.com.au/Cart?id=17616",
+        href: packageUrl("starter-kit"),
     },
     {
         id: "voucher-1hr",
         slug: "automatic-1-hour-voucher",
+        artLabel: "SINGLE LESSON",
+        artVariant: "voucher",
         name: "(Automatic) 1 Hour Voucher",
         price: "$70.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=66623&Thumbnail=Y&v=2",
         category: "lesson-vouchers",
         includesTitle: "This package includes:",
         includes: ["1 x 1hr Automatic Driving Lesson"],
-        href: "https://driveacademy.com.au/Cart?id=11461",
+        href: packageUrl("automatic-1-hour-voucher"),
     },
     {
         id: "voucher-2hr",
         slug: "automatic-2-hour-voucher",
+        artLabel: "2HR LESSON",
+        artVariant: "voucher",
         name: "(Automatic) 2 Hour Voucher",
         price: "$130.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=66530&Thumbnail=Y&v=2",
         category: "lesson-vouchers",
         includesTitle: "This package includes:",
         includes: ["1 x 2hr Automatic Driving Lesson"],
-        href: "https://driveacademy.com.au/Cart?id=11443",
+        href: packageUrl("automatic-2-hour-voucher"),
     },
     {
         id: "auto-grand-master",
         slug: "automatic-grand-master-package",
+        artLabel: "10 LESSONS + TEST",
         name: "(Automatic) Grand Master Package",
         price: "$770.00",
         // badge: "AUTO",
-        imageUrl: "https://cdn.bookingtimes.com/Common/LoadImage?Id=66622&Thumbnail=Y&v=4",
         category: "automatic-packages",
         includesTitle: "This package is the ultimate automatic learner driver package. It includes:",
         includes: [
@@ -130,6 +137,6 @@ export const packages: PackageDetail[] = [
             "Car hire for your driving test",
             "*Excludes TMR Booking Fee",
         ],
-        href: "https://driveacademy.com.au/Cart?id=11460",
+        href: packageUrl("automatic-grand-master-package"),
     },
 ];

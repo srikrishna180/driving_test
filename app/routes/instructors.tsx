@@ -1,5 +1,6 @@
 // routes/instructor.$id.tsx
 import { useState } from "react";
+import { bookingUrl } from "../config";
 
 type Testimonial = {
     id: string;
@@ -150,7 +151,7 @@ export default function InstructorPage() {
                                     {renderStars(instructor.rating)}
 
                                     <a
-                                        href="https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103"
+                                        href={bookingUrl()}
                                         className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white hover:bg-slate-800">
                                         Book Now
                                     </a>

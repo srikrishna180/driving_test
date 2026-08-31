@@ -1,6 +1,9 @@
 // src/components/Navbar.tsx
 import { Link, NavLink, useLocation } from "react-router";
 import { useState } from "react";
+import { accountUrl, bookingUrl, loginUrl } from "../config";
+import { useViewer } from "~/lib/use-viewer";
+import { CartWidget } from "./MiniCart";
 
 const navItems = [
     // { to: "/instructors", label: "Instructors" },
@@ -14,6 +17,7 @@ const navItems = [
 
 export function Navbar() {
     const [open, setOpen] = useState(false);
+    const viewer = useViewer();
     const location = useLocation();
 
     const isActivePath = (path: string) =>
@@ -76,25 +80,33 @@ export function Navbar() {
                         0402 585 553
                     </a>
 
-                    <a
-                        href="https://driveacademy.com.au/Login"
-                        className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-600 transition-colors hover:text-slate-900"
-                    >
-                        Login
-                    </a>
+                    {/* Only shown once we know. "My account" for someone
+                        signed in, "Log in" otherwise — which is also how
+                        instructors and the owner get to the staff app. */}
+                    {viewer && (
+                        <a
+                            href={viewer.signedIn ? accountUrl() : loginUrl()}
+                            className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-600 transition-colors hover:text-slate-900"
+                        >
+                            {viewer.signedIn ? "My account" : "Log in"}
+                        </a>
+                    )}
+
+                    <CartWidget />
 
                     <a
-                        href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                        href={bookingUrl()}
                         className="inline-flex items-center whitespace-nowrap rounded-full bg-[#ff2c00] px-6 py-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white shadow-lg transition-all hover:bg-[#e62800] hover:shadow-xl"
                     >
                         Book Now
                     </a>
                 </div>
 
-                {/* Mobile: Book Now + menu toggle */}
-                <div className="flex items-center gap-2 lg:hidden">
+                {/* Mobile: cart + Book Now + menu toggle */}
+                <div className="flex items-center gap-1 lg:hidden">
+                    <CartWidget />
                     <a
-                        href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                        href={bookingUrl()}
                         className="inline-flex items-center whitespace-nowrap rounded-full bg-[#ff2c00] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-white hover:bg-[#e62800]"
                     >
                         Book Now
@@ -156,13 +168,15 @@ export function Navbar() {
                                 </svg>
                                 0402 585 553
                             </a>
-                            <a
-                                href="https://driveacademy.com.au/Login"
-                                onClick={() => setOpen(false)}
-                                className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600"
-                            >
-                                Login
-                            </a>
+                            {viewer && (
+                                <a
+                                    href={viewer.signedIn ? accountUrl() : loginUrl()}
+                                    onClick={() => setOpen(false)}
+                                    className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-600"
+                                >
+                                    {viewer.signedIn ? "My account" : "Log in"}
+                                </a>
+                            )}
                         </div>
 
                         {navItems.map((item) => (

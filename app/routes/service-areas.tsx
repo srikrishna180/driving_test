@@ -1,8 +1,9 @@
 // routes/service-areas.tsx
 import { Fragment } from "react";
+import { bookingUrl } from "../config";
 
 const PHONE = "0420 585 553";
-const EMAIL = "info@driveacademy.com.au";
+const EMAIL = "info@driveacademy.au";
 
 const OPENING_HOURS = [
     { day: "Monday", hours: "7:00am to 4:00pm" },
@@ -186,7 +187,7 @@ export default function LocationsPage() {
                             </div>
 
                             <a
-                                href='https://driveacademy.com.au/BookingsWeekly?Location=978&Staff=3103'
+                                href={bookingUrl()}
                                 className="inline-flex h-11 items-center justify-center rounded-full bg-slate-900 px-8 text-xs font-semibold uppercase tracking-[0.16em] text-white shadow-sm hover:bg-slate-800 w-full"
                             >
                                 Book Now
