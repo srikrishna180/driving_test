@@ -9,6 +9,18 @@ import {
 } from "@stripe/react-stripe-js";
 import { APP_URL, STRIPE_PUBLISHABLE_KEY } from "~/config";
 import { checkServiceArea } from "~/lib/service-area";
+
+/**
+ * Stripe.js is loaded once here rather than inside the component.
+ * `loadStripe` kicks off a network fetch and returns a fresh promise on every
+ * call, so calling it during render hands <Elements> a new promise each time
+ * and remounts the payment form underneath the customer.
+ *
+ * Null when no publishable key is configured. `loadStripe("")` rejects and
+ * <Elements> then renders nothing at all — a checkout that is simply blank,
+ * with no clue why, which is how this shipped to production unnoticed.
+ */
+const stripePromise = STRIPE_PUBLISHABLE_KEY ? loadStripe(STRIPE_PUBLISHABLE_KEY) : null;
 import {
     getBookingOptions,
     getViewer,
@@ -395,12 +407,23 @@ export default function BookConfirm() {
             )}
 
             {!viewer ? null : clientSecret ? (
-                <Elements
-                    stripe={loadStripe(STRIPE_PUBLISHABLE_KEY)}
-                    options={{ clientSecret, appearance: appearanceFromTokens() }}
-                >
-                    <PayForm dueNow={dueNow} />
-                </Elements>
+                stripePromise ? (
+                    <Elements
+                        stripe={stripePromise}
+                        options={{ clientSecret, appearance: appearanceFromTokens() }}
+                    >
+                        <PayForm dueNow={dueNow} />
+                    </Elements>
+                ) : (
+                    <section className="mt-4 rounded-xl border border-crit/30 bg-crit-soft p-4">
+                        <h2 className="text-sm font-semibold text-ink">
+                            Card payment isn't available right now
+                        </h2>
+                        <p className="mt-1.5 text-[13px] leading-relaxed text-ink-2">
+                            Please call us to finish your booking — your time is held.
+                        </p>
+                    </section>
+                )
             ) : (
                 <>
                     {!viewer.signedIn && (
